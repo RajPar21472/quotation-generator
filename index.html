@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quotation Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Everest Electro Systems</h1>
+    <h2>Repair Quotation</h2>
+
+    <label>Address: <input type="text" id="customerName" /></label>
+    <label>Customer Name: <input type="text" id="address" /></label>
+    <label>Reference ID: <input type="text" id="refId" /></label>
+    <label>Date: <input type="date" id="date" /></label>
+
+    <div id="items">
+      <h3>Items</h3>
+      <div class="item">
+        <input type="text" placeholder="Serial No" class="serial" />
+        <input type="text" placeholder="Description" class="desc" />
+        <input type="number" placeholder="Quantity" class="qty" oninput="updateTotal(this)" min="1" />
+        <input type="number" placeholder="Unit Price (LKR)" class="unit" oninput="updateTotal(this)" min="0" />
+        <input type="number" placeholder="Total Price (LKR)" class="total" readonly />
+        <button onclick="this.parentElement.remove(); calculateTotal();">Remove</button>
+      </div>
+    </div>
+    <button onclick="addItem()">+ Add Item</button>
+
+    <h3>Total: LKR <span id="total">0.00</span></h3>
+
+    <h3>Bank Details</h3>
+    <label>Bank: <input type="text" id="bank" /></label>
+    <label>Branch: <input type="text" id="branch" /></label>
+    <label>Account Name: <input type="text" id="accountName" /></label>
+    <label>Account Number: <input type="text" id="accountNumber" /></label>
+
+    <h3>Sender Details</h3>
+    <label>Name: <input type="text" id="senderName" /></label>
+    <label>Phone: <input type="text" id="senderPhone" /></label>
+    <label>Title: <input type="text" id="senderTitle" /></label>
+
+    <h3>Signature</h3>
+    <label>Signature: <input type="file" id="signature" accept="image/png,image/jpeg" /></label>
+
+    <button onclick="generatePDF()">Generate PDF</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
